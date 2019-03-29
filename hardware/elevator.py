@@ -19,13 +19,13 @@ class Elevator:
 
     PigeonCanID = 19
     OUTPUT_SHAFT_DIAMETER = 1.76 / 12  # in feet
-    PID_SPEED = 0.5
+    PID_SPEED = 0.6
 
     UP_SPEED = 0.30
     DOWN_SPEED = -0.18
     # UP_SPEED = 0.2
     # DOWN_SPEED = -0.05
-    SLOW_DOWN_SPEED = -0.05
+    SLOW_DOWN_SPEED = -0.02
     HOLD_SPEED = 0.1
 
     KP = ntproperty("/SmartDashboard/KP", 0, writeDefault=True)

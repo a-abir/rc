@@ -18,7 +18,7 @@ class CargoGrabber:
     ROTATE_UP_SPEED = 0.25
     ROTATE_DOWN_FAST_SPEED = -0.25
     ROTATE_DOWN_HOLD_SPEED = -0.1
-    INTAKE_SPEED = -0.3
+    INTAKE_SPEED = -0.5
     LIMIT_SWITCH_CHANNEL = 3
 
     def __init__(self, rotate_mechanism_motor_id, intake_cargo_motor_id):

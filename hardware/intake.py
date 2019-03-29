@@ -62,7 +62,7 @@ class Intake:
         '''
         # Assuming we intake from the front
         # Rotate the front wheels to intake towards the back of the bot
-        self.set_front_back(back_speed=-1)
+        self.set_front_back(back_speed=1)
 
     def set_motors_slow_intake(self):
         '''
@@ -72,7 +72,7 @@ class Intake:
         '''
         # Assuming we intake from the front
         # Rotate the front wheels to intake towards the back of the bot
-        self.set_front_back(front_speed=-0.5, back_speed=-0.9)
+        self.set_front_back(front_speed=0.9, back_speed=0.5)
 
     def set_motors_shoot(self):
         '''

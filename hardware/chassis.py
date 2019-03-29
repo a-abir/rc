@@ -14,7 +14,7 @@ class GearShifter(Solenoid):
             low_gear_port,
             high_gear_port
         )
-        self.set_low_gear()
+        self.set_high_gear()
         self.timer = Timer()
         self.timer.wait(1)
         

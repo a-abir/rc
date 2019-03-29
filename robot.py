@@ -151,7 +151,7 @@ class Finn(TimedRobot):
         try:
             self.chassis.reset_sensors()
             self.elevator.reset_sensors()
-            self.elevator.zero()
+            self.elevator.low()
             self.teleopInit()
         except Exception as e: print(e)
 
@@ -168,7 +168,7 @@ class Finn(TimedRobot):
 
             if self.joystick.get_shift_gears():
                 self.chassis.shift()
-
+            
 
             # hatch floor grabber
             # self.hatch_floor_grabber.update()
