@@ -3,3 +3,4 @@
 .deploy_cfg
 pip_cache
 opkg_cache
+tests
