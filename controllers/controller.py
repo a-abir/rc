@@ -12,7 +12,7 @@ class Controller:
     def set_mapping(self, name, joystick_button_number):
         self.button_mapping[name] = joystick_button_number
 
-    def get_mapping(self, name): return self.button_mapping[name]
+    def get_mapping(self, name): return self.button_mapping.get(name, None)
 
     def set_invert_mapping(self, name, value):
         self.invert_mapping[name] = value
@@ -20,13 +20,20 @@ class Controller:
     def get_joystick_mapping(self, name):
         if name in self.invert_mapping.keys():
             if self.invert_mapping[name]:
-                return -1 * self.joystick.getRawAxis(self.get_mapping(name))
+                n = self.get_mapping(name)
+                if n:
+                    return -1 * self.joystick.getRawAxis(n)
 
-        return self.joystick.getRawAxis(self.get_mapping(name))
-
+        n = self.get_mapping(name)
+        if n:
+            return self.joystick.getRawAxis(n)
+        return 0
 
     def get_button_mapping(self, name):
-        return self.joystick.getRawButton(self.get_mapping(name))
+        n = self.get_mapping(name)
+        if n:
+            return self.joystick.getRawButton(n)
+        else: return False
 
     def set_drive_forward(self, value):
         self.set_mapping("drive_forward", value)
@@ -117,12 +124,6 @@ class Controller:
 
     def get_rotate_hatch_up(self):
         return self.get_button_mapping("rotate_hatch_up")
-
-    def set_grab_hatch(self, value):
-        self.set_mapping("grab_hatch", value)
-
-    def get_grab_hatch(self):
-        return self.get_button_mapping("grab_hatch")
 
     def set_rotate_cargo_down(self, value):
         self.set_mapping("rotate_cargo_down", value)
