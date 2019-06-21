@@ -1,1 +1,5 @@
 .vscode/
+.installer_config
+.deploy_cfg
+pip_cache
+opkg_cache
