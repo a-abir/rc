@@ -13,7 +13,8 @@ class Joystick(Controller):
 
         self.invert_drive_turn()
         # "adam mega cool" - logan, bag night 2019
-        self.set_intake_hatch(button_verifier.check(5))
+        self.set_grab_hatch(button_verifier.check(5))
+        # self.set_intake_hatch(button_verifier.check(5))
         self.set_drop_hatch(button_verifier.check(6))
         self.set_rotate_cargo_down(button_verifier.check(3))
         self.set_rotate_cargo_up(button_verifier.check(4))
