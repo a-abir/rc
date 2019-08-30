@@ -4,3 +4,4 @@
 pip_cache
 opkg_cache
 tests
+__pycache__
