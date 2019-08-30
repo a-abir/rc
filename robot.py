@@ -158,84 +158,84 @@ class Finn(TimedRobot):
     def autonomousPeriodic(self): self.teleopPeriodic()
 
     def teleopPeriodic(self):
-        try:
-            # chassis
-            self.chassis.update()
-            self.chassis.arcade_drive(
-                self.joystick.get_drive_forward(),
-                self.joystick.get_drive_turn() * 0.7
-            )
+        # chassis
+        self.chassis.update()
+        self.chassis.arcade_drive(
+            self.joystick.get_drive_forward(),
+            self.joystick.get_drive_turn() * 0.7
+        )
 
-            if self.joystick.get_shift_gears():
-                self.chassis.shift()
-            
+        if self.joystick.get_shift_gears():
+            self.chassis.shift()
+        
 
-            # hatch floor grabber
-            # self.hatch_floor_grabber.update()
-            # self.hatch_floor_grabber.hold_up()
-
-
-            # hatch holder
-            self.hatch_holder.update()
-            if self.joystick.get_intake_hatch():
-                print("intaking")
-                self.hatch_holder.intake()
-            elif self.joystick.get_drop_hatch():
-                print("dropping")
-                self.hatch_holder.drop()
-            elif self.hatch_holder.is_intaking():
-                print("holding")
-                self.hatch_holder.hold()
+        # hatch floor grabber
+        # self.hatch_floor_grabber.update()
+        # self.hatch_floor_grabber.hold_up()
 
 
-            # cargo grabber
-            self.cargo_grabber.update()
-            if self.joystick.get_rotate_cargo_down():
-                print("getting cargo")
-                self.cargo_grabber.get_cargo()
-                self.elevator.zero()
-            elif self.joystick.get_rotate_cargo_up():
-                self.cargo_grabber.stop_getting_cargo()
+        # hatch holder
+        self.hatch_holder.update()
+        if self.joystick.get_intake_hatch():
+            print("intaking")
+            self.hatch_holder.intake()
+        elif self.joystick.get_drop_hatch():
+            print("dropping")
+            self.hatch_holder.drop()
+        elif self.joystick.get_grab_hatch():
+            print("grabbing")
+            self.hatch_holder.grab()
+        elif self.hatch_holder.is_intaking():
+            print("holding")
+            self.hatch_holder.hold()
 
 
-            # intake
-            self.intake.update()
-            if self.joystick.get_shoot():
-                self.intake.shoot()
-            elif not self.cargo_grabber.is_stopping():
-                self.intake.slow_intake()
-            else:
-                self.intake.idle()
+        # cargo grabber
+        self.cargo_grabber.update()
+        if self.joystick.get_rotate_cargo_down():
+            print("getting cargo")
+            self.cargo_grabber.get_cargo()
+            self.elevator.zero()
+        elif self.joystick.get_rotate_cargo_up():
+            self.cargo_grabber.stop_getting_cargo()
 
-            # elevator
-            self.elevator.update()
-            if self.joystick.get_elevator_low():
-                self.elevator.low()
-            elif self.joystick.get_elevator_mid():
-                self.elevator.mid()
-            elif self.joystick.get_elevator_high():
-                self.elevator.high()
-            elif self.joystick.get_elevator_cargo_ship():
-                self.elevator.cargo_ship()
-            # if self.joystick.get_elevator_low():
-            #     self.elevator.down()
-            #     print("down")
-            # elif self.joystick.get_elevator_high():
-            #     self.elevator.up()
-            #     print("up")
-            # else:
-            #     self.elevator.stop()
-            #     print("stopping")
-            
 
-            # print(self.elevator.is_going_up())
-            print(
-                "Elevator position in feet:",
-                self.elevator.get_actual_position() / 3.14,
-                "Output voltage", self.elevator.master_talon.getMotorOutputVoltage()
-            )
+        # intake
+        self.intake.update()
+        if self.joystick.get_shoot():
+            self.intake.shoot()
+        elif not self.cargo_grabber.is_stopping():
+            self.intake.slow_intake()
+        else:
+            self.intake.idle()
 
-        except Exception as e: print(e)
+        # elevator
+        self.elevator.update()
+        if self.joystick.get_elevator_low():
+            self.elevator.low()
+        elif self.joystick.get_elevator_mid():
+            self.elevator.mid()
+        elif self.joystick.get_elevator_high():
+            self.elevator.high()
+        elif self.joystick.get_elevator_cargo_ship():
+            self.elevator.cargo_ship()
+        # if self.joystick.get_elevator_low():
+        #     self.elevator.down()
+        #     print("down")
+        # elif self.joystick.get_elevator_high():
+        #     self.elevator.up()
+        #     print("up")
+        # else:
+        #     self.elevator.stop()
+        #     print("stopping")
+        
+
+        # print(self.elevator.is_going_up())
+        # print(
+        #     "Elevator position in feet:",
+        #     self.elevator.get_actual_position() / 3.14,
+        #     "Output voltage", self.elevator.master_talon.getMotorOutputVoltage()
+        # )
 
 if __name__ == "__main__":
     run(Finn)

@@ -75,16 +75,16 @@ class HatchHolder:
             self.timer.wait(0.5)
 
             if self.timer.is_done():
-                self.close()
                 self.stop()
 
         elif self.is_stopping():
-            # print("stopping")
+            self.close()
+            self.retract()
             self.timer.wait(0.5)
 
-            self.close()
             if self.timer.is_done():
-                self.retract()
+                self.hold()
+
 
         elif self.is_intaking():
             self.close()
