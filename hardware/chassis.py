@@ -20,11 +20,11 @@ class GearShifter(Solenoid):
         
     # Setters
     def set_low_gear(self):
-        self.set_forward()
+        self.set_reverse()
         self.set_gearing_state(ShifterStates.LowGear)
 
     def set_high_gear(self):
-        self.set_reverse()
+        self.set_forward()
         self.set_gearing_state(ShifterStates.HighGear)
 
     def set_gearing_state(self, state):
@@ -89,8 +89,6 @@ class Chassis:
         self.drive = DifferentialDrive(self.left_master, self.right_master)
 
         self.reset_sensors()
-
-        # self.path = 
 
     def shift(self): self.shifter_actuator.shift()
 

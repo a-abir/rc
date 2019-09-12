@@ -12,7 +12,7 @@ from hardware import HatchFloorGrabber, HatchHolder, CargoGrabber
 from math import radians
 from path_lib import Path, PigeonApproach, PIDVisionAlign, VisionApproach, Trajectory, GrabHatch, DropHatch, TestSegment, LEFT_ROCKET_FRONT
 
-from controllers import Joystick
+from controllers import Joystick, XBox
 
 NetworkTables.initialize()
 
@@ -142,7 +142,7 @@ class Finn(TimedRobot):
 
     def robotInit(self):
         print("hello world")
-        self.joystick = Joystick(0)
+        self.joystick = XBox(0)
         self.path = None
         self.chassis.reset_sensors()
         self.elevator.reset_sensors()
